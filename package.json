@@ -1,0 +1,12 @@
+{
+  "name": "arduino-board-monitor",
+  "version": "0.0.1",
+  "description": "A Nodejs Arduino example",
+  "author": "Tarciso P. Martins Jr",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.4",
+    "hbs": "^4.0.1",
+    "socket.io": "^2.0.3"
+  }
+}

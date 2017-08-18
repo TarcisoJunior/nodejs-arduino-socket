@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<!--<script src="/socket.io/socket.io.js"></script>
+		<script>
+		  var socket = io();
+		</script>-->
+	</head>
+	<body onload="page_init()">
+		<h1>Board Connected<br><small>see values below</small></h1>
+
+		<h2>Leds</h2>
+		<p> Blue : <span id="spBlueLed"></span></p>
+		<p> Green : <span id="spGreenLed"></span></p>
+		<p> Red : <span id="spRedLed"></span></p>
+
+		<h2>Button </h2>
+		<p> Button 1: <span id="spButton1"></span></p>
+
+		<h2>Potentiometer </h2>
+		<p> Value: <span id="spPotentiometer"></span></p>
+
+		<div id="divStatus"></div>
+		<div id="divLog"></div>
+	</body>
+<script>
+		function page_init(){
+			document.getElementById('divStatus').innerHTML="Inicializando...";
+		}
+	</script>
+</html>

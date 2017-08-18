@@ -1,0 +1,79 @@
+<!DOCTYPE  html>
+<head>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+    var socket = io.connect('http://192.168.0.104:3000');
+    </script>
+    <style>
+    	.grey{
+    		color: #BBB;
+            cursor:pointer;
+    	}
+
+    	.red{
+    		color: red;
+            cursor:pointer;
+    	}
+
+    	.green{
+    		color: green;
+            cursor:pointer;
+    	}
+
+    	.blue{
+    		color: blue;
+            cursor:pointer;
+    	}
+
+    	span{
+    		font-size: 2.5em;
+    	}
+
+    </style>
+</head>
+<body>
+<h1>{{title}}</h1>
+<p>Painel {{title}}</p>
+
+<h2>Board Connected<br><small>see values below</small></h1>
+
+<h3>Leds</h3>
+<p> Blue : <span id="spBlue" class='grey' onclick='toggle_led("blue")'>{{blueLed}}</span></p>
+<p> Green : <span id="spGreen" class='grey' onclick="toggle_led('green')">{{greenLed}}</span></p>
+<p> Red: <span id="spRed" class='grey' onclick="toggle_led('red')">{{redLed}}</span></p>
+
+<h3>Button </h3>
+<p> Count: <span id="spButton">{{btn}}</span></p>
+
+<h3>Potentiometer </h3>
+<p> Value: <span id="spPotentiometer">{{potentiometer}}</span></p>
+
+<div id="divStatus"></div>
+<div id="divLog"></div>
+<script>
+    function toggle_led(colorLed){
+        socket.emit("toggle_led", colorLed);
+    }
+
+	socket.on("setBoardValues",function(pot){
+		document.getElementById('spPotentiometer').innerHTML = pot.value;
+		document.getElementById('spBlue').innerHTML = pot.blue;
+		document.getElementById('spGreen').innerHTML = pot.green;
+		document.getElementById('spRed').innerHTML = pot.red;
+		document.getElementById('spBlue').className = 'grey';
+		document.getElementById('spGreen').className = 'grey';
+		document.getElementById('spRed').className = 'grey';
+		if (pot.blue){
+			document.getElementById('spBlue').className = 'blue';
+		}
+		if (pot.green){
+			document.getElementById('spGreen').className = 'green';
+		}
+		if (pot.red){
+			document.getElementById('spRed').className = 'red';
+		} 
+        if (pot.btn != undefined)
+            document.getElementById('spButton').innerHTML = pot.btn;
+	});
+</script>
+</body>
